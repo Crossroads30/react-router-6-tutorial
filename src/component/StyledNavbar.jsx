@@ -14,16 +14,22 @@ const StyledNavbar = () => {
 			</NavLink>
 			{/* styles for active link with adding css classes */}
 			<NavLink
-				to='about'
+				to='/about'
 				className={({ isActive }) => (isActive ? 'link active' : 'link')}
 			>
 				About
 			</NavLink>
 			<NavLink
-				to='products'
+				to='/products'
 				className={({ isActive }) => (isActive ? 'link active' : 'link')}
 			>
 				Product
+			</NavLink>
+			<NavLink
+				to='/login'
+				className={({ isActive }) => (isActive ? 'link active' : 'link')}
+			>
+				Login
 			</NavLink>
 		</nav>
 	)
