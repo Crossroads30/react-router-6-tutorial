@@ -7,14 +7,17 @@ import Error from './pages/Error'
 function App() {
 	return (
 		<BrowserRouter>
-    <nav>Our Navbar</nav>
+			<nav>Our Navbar</nav>
 			<Routes>
-				<Route path='/' element={<Home />} />
-				<Route path='about' element={<About />} />
-				<Route path='Products' element={<Products />} />
-				<Route path='*' element={<Error />} />
+					{/* parent route */}
+				<Route path='/' element={<Home />}>
+					{/* nested routes */}
+					<Route path='about' element={<About />} />
+					<Route path='Products' element={<Products />} />
+					<Route path='*' element={<Error />} />
+				</Route>
 			</Routes>
-      <footer>Our Footer</footer>
+			<footer>Our Footer</footer>
 		</BrowserRouter>
 	)
 }
