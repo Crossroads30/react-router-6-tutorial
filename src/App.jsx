@@ -8,6 +8,8 @@ import SharedLayout from './pages/SharedLayout'
 import SingleProduct from './pages/SingleProduct'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
+import ProtectedRoute from './pages/ProtectedRoute'
+import SharedProductLayout from './pages/SharedProductLayout'
 
 function App() {
 	const [user, setUser] = useState(null)
@@ -20,10 +22,24 @@ function App() {
 					<Route index element={<Home />} />
 					{/* nested routes */}
 					<Route path='about' element={<About />} />
-					<Route path='products' element={<Products />} />
-					<Route path='products/:productId' element={<SingleProduct />} />
+					<Route path='products' element={<SharedProductLayout />}>
+						<Route index element={<Products />} />
+						<Route
+							index
+							path=':productId'
+							element={<SingleProduct />}
+						/>
+					</Route>
 					<Route path='login' element={<Login setUser={setUser} />} />
-					<Route path='dashboard' element={<Dashboard user={user} />} />
+					<Route
+						path='dashboard'
+						element={
+							// to access page('dashboard') by some conditions, for ex for enter some page only with login
+							<ProtectedRoute user={user}>
+								<Dashboard user={user} />
+							</ProtectedRoute>
+						}
+					/>
 					<Route path='*' element={<Error />} />
 				</Route>
 			</Routes>
